@@ -12,6 +12,9 @@ const SongList = ({ songsArray }) => {
   // console.log(items);
   // items +=  5
 
+  // Função para verificar se há mais músicas para carregar
+  const hasMoreSongs = items < songsArray.length;
+
   return (
     <div className="song-list">
       {songsArray
@@ -20,16 +23,20 @@ const SongList = ({ songsArray }) => {
           <SongItem {...currentSongObj} index={index} key={index} />
         ))}
 
-      <p
-        className="song-list__see-more"
-        onClick={() => {
-          setItems(items + 5);
-          // items += 5;
-          // console.log(items);
-        }}
-      >
-        Ver mais
-      </p>
+      {hasMoreSongs ? (
+        <p
+          className="song-list__see-more"
+          onClick={() => {
+            setItems(items + 5);
+            // items += 5;
+            // console.log(items);
+          }}
+        >
+          Ver mais
+        </p>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
